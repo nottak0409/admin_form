@@ -1,6 +1,6 @@
 <?php
-require('dbconnect.php');
-require('function.php');
+require('function/dbconnect.php');
+require('function/function.php');
 
 session_start();
 
@@ -46,7 +46,7 @@ if(!empty($_POST)) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>ログインフォーム</title>
 
-	<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="stylesheets/style.css" />
 </head>
 
 <body>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('dbconnect.php');
+require('function/dbconnect.php');
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,7 +10,7 @@ require('dbconnect.php');
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>トップページ</title>
 
-	<link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="stylesheets/style.css" />
 </head>
 
 <body>

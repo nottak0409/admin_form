@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require('dbconnect.php');
-require('function.php');
+require('function/dbconnect.php');
+require('function/function.php');
 
 if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$_SESSION['time'] = time();
@@ -16,7 +16,7 @@ if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 
 if(!empty($_POST)) {
 	if($_POST['message'] != '') {
-		$message = $db->prepare('INSERT INTO posts SET member_id=?, message=?, reply_post_id=?, created=NOW()');
+		$message = $db->prepare('INSERT INTO posts SET user_id=?, message=?, reply_post_id=?, created=NOW()');
 		$message->execute(array(
 			$member['id'],
 			$_POST['message'],
@@ -59,7 +59,7 @@ if (isset($_REQUEST['res'])) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>一覧画面</title>
 
-	<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="stylesheets/style.css" />
 </head>
 
 <body>

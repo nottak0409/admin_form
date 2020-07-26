@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require('dbconnect.php');
-require('function.php');
+require('function/dbconnect.php');
+require('function/function.php');
 
 if (empty($_REQUEST['id'])) {
 	header('Location: index.php'); exit();
@@ -19,7 +19,7 @@ $posts->execute(array($_REQUEST['id']));
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>詳細</title>
 
-	<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="stylesheets/style.css" />
 </head>
 
 <body>
