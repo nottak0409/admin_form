@@ -46,7 +46,7 @@ if(!empty($_POST)) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>ログインフォーム</title>
 
-	<link rel="stylesheet" href="join/style.css" />
+	<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
