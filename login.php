@@ -12,7 +12,7 @@ if ($_COOKIE['email' != '']){
 
 if(!empty($_POST)) {
 	if($_POST['email'] != '' && $_POST['password'] != '') {
-		$login = $db->prepare('SELECT * FROM members WHERE email=? AND password=?');
+		$login = $db->prepare('SELECT * FROM users WHERE email=? AND password=?');
 		$login->execute(array(
 			$_POST['email'],
 			sha1($_POST['password'])
@@ -28,7 +28,7 @@ if(!empty($_POST)) {
 			setcookie('password', $_POST['password'], time()+60*60*24*14);
 		}
 
-		header('Location: index.php');
+		header('Location: list.php');
 		exit();
 	} else {
 		$error['login'] = "ログインに失敗しました";
