@@ -1,6 +1,6 @@
 <?php
-require('function/dbconnect.php');
-require('function/function.php');
+require('../function/dbconnect.php');
+require('../function/function.php');
 
 session_start();
 
@@ -28,7 +28,7 @@ if(!empty($_POST)) {
 			setcookie('password', $_POST['password'], time()+60*60*24*14);
 		}
 
-		header('Location: list.php');
+		header('Location: ../posts/list.php');
 		exit();
 	} else {
 		$error['login'] = "ログインに失敗しました";
@@ -46,7 +46,7 @@ if(!empty($_POST)) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>ログインフォーム</title>
 
-  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="../stylesheets/style.css" />
 </head>
 
 <body>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('function/dbconnect.php');
+require('../function/dbconnect.php');
 
 if(isset($_SESSION['id'])) {
   $id = $_REQUEST['id'];
@@ -15,5 +15,5 @@ if(isset($_SESSION['id'])) {
   }
 }
 
-header('Location: index.php'); exit();
+header('Location: ../index.php'); exit();
 ?>

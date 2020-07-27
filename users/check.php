@@ -1,7 +1,7 @@
 <?php
 session_start();
-require('function/dbconnect.php');
-require('function/function.php');
+require('../function/dbconnect.php');
+require('../function/function.php');
 
 if(!isset($_SESSION['join'])){
 	header('Location: register.php');
@@ -30,7 +30,7 @@ if(!empty($_POST)) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>会員登録</title>
 　
-	<link rel="stylesheet" href="stylesheets/style.css" />
+	<link rel="stylesheet" href="../stylesheets/style.css" />
 </head>
 
 <body>

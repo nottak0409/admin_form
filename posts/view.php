@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-require('function/dbconnect.php');
-require('function/function.php');
+require('../function/dbconnect.php');
+require('../function/function.php');
 
 if (empty($_REQUEST['id'])) {
-	header('Location: index.php'); exit();
+	header('Location: list.php'); exit();
 }
 
 $posts = $db->prepare('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id AND p.id=? ORDER BY p.created DESC');
@@ -19,7 +19,7 @@ $posts->execute(array($_REQUEST['id']));
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>詳細</title>
 
-  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="../stylesheets/style.css" />
 </head>
 
 <body>
@@ -28,7 +28,7 @@ $posts->execute(array($_REQUEST['id']));
     <h1>会員登録</h1>
   </div>
   <div id="content">
-  <p>&laquo;<a href="index.php">一覧に戻る</a></p>
+  <p>&laquo;<a href="list.php">一覧に戻る</a></p>
 	<?php	if ($post = $posts->fetch()):	?>
 	<div class="msg">
 	<img src="picture/<?php echo h($post['picture']); ?>" width="48" height="48" alt="<?php echo h($post['name']); ?>" />

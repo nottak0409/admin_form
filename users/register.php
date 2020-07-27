@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('function/dbconnect.php');
+require('../function/dbconnect.php');
 
 if(!empty($_POST)){
 	if($_POST['name'] == "") {
@@ -41,7 +41,7 @@ if(!empty($_POST)){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>会員登録</title>
-  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="../stylesheets/style.css" />
 </head>
 
 <body>
