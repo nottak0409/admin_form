@@ -7,9 +7,9 @@ require('../function/function.php');
 if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$_SESSION['time'] = time();
 
-	$members = $db->prepare('SELECT * FROM users WHERE id=?');
-	$members->execute(array($_SESSION['id']));
-	$member = $members->fetch();
+	$users = $db->prepare('SELECT * FROM users WHERE id=?');
+	$users->execute(array($_SESSION['id']));
+	$user = $users->fetch();
 } else {
 	header('Location: ../users/login.php'); exit();
 }
@@ -72,7 +72,7 @@ $posts->execute();
 			<li>次のページへ</li>
 		<?php endif; ?>
 	</ul>
-	<div class="logout" style="text-align: center; padding-top: 10px;"><a href="logout.php">ログアウト</a></div>
+	<div class="logout" style="text-align: center; padding-top: 10px;"><a href="../users/logout.php">ログアウト</a></div>
 	</div>
   </div>
 </div>
