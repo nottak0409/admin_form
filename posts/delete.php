@@ -15,5 +15,5 @@ if(isset($_SESSION['id'])) {
   }
 }
 
-header('Location: ../index.php'); exit();
+header('Location: list.php'); exit();
 ?>

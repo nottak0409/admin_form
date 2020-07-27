@@ -28,7 +28,7 @@ $maxPage = ceil($cnt['cnt'] / 5);
 $page = min($page, $maxPage);
 $start = ($page - 1) * 5;
 
-$posts = $db->prepare('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id ORDER BY p.created DESC LIMIT ?, 5');
+$posts = $db->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id ORDER BY posts.created DESC LIMIT ?, 5');
 $posts->bindParam(1, $start, PDO::PARAM_INT);
 $posts->execute();
 ?>
@@ -51,8 +51,10 @@ $posts->execute();
   </div>
   <div id="content">
 	<?php foreach ($posts as $post): ?>
-		<div class="msg">
-			<p><?php echo makeLink(h($post['message'])); ?><span class="name">(<?php echo h($post['name']); ?>)</span>
+		<div class="content">
+			<p><span class="name"><?php echo h($post['name']); ?></span>
+			<p><?php echo h($post['title']); ?></p>
+			<img src="../picture/<?php echo h($post['picture']); ?>" width="48" height="48" alt="<?php echo h($post['name']); ?>" />
 			<p class="day"><a href="view.php?id=<?php echo h($post['id']); ?>"><?php echo h($post['created']); ?></a>
 			<?php if($_SESSION['id'] == $post['user_id']): ?>
       [<a href="delete.php?id=<?php echo h($post['id']); ?>" style="color:#F33;">削除</a>]
