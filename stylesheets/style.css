@@ -1,15 +1,12 @@
-.required {
+.required{
   color: red;
 }
 
-body {
-  background-color: blue;
-}
-
-#content {
+.content {
   padding: 10px;
   margin-bottom: 10px;
   border: 1px;
-  border-color: #333333;
   border-style: solid;
+  border-color: #333333;
+  text-align:center;
 }

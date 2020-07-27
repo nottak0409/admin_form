@@ -54,7 +54,7 @@ $posts->execute();
 		<div class="content">
 			<p><span class="name"><?php echo h($post['name']); ?></span>
 			<p><?php echo h($post['title']); ?></p>
-			<img src="../picture/<?php echo h($post['picture']); ?>" width="48" height="48" alt="<?php echo h($post['name']); ?>" />
+			<img src="../picture/<?php echo h($post['picture']); ?>" width="200" height="200" alt="<?php echo h($post['name']); ?>" />
 			<p class="day"><a href="view.php?id=<?php echo h($post['id']); ?>"><?php echo h($post['created']); ?></a>
 			<?php if($_SESSION['id'] == $post['user_id']): ?>
       [<a href="delete.php?id=<?php echo h($post['id']); ?>" style="color:#F33;">削除</a>]

@@ -30,9 +30,9 @@ $posts->execute(array($_REQUEST['id']));
   <div id="content">
   <p>&laquo;<a href="list.php">一覧に戻る</a></p>
 	<?php	if ($post = $posts->fetch()):	?>
-	<div class="msg">
+	<div class="content">
 	<p><span class-"name"><?php echo h($post['name']); ?></span></p>
-	<img src="../picture/<?php echo h($post['picture']); ?>" width="48" height="48" alt="<?php echo h($post['name']); ?>" />
+	<img src="../picture/<?php echo h($post['picture']); ?>" width="200" height="200" alt="<?php echo h($post['name']); ?>" />
 	<p><?php echo h($post['small_title']); ?></p>
 	<p><?php echo makeLink(h($post['content'])); ?></p>
 	<p>営業時間:<?php echo h($post['business_hours']); ?></p>
