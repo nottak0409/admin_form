@@ -14,7 +14,7 @@ require('function/dbconnect.php');
 </head>
 
 <body>
-<a href="users/login.php">ログインの方はこちら</a>
+<a href="users/login.php">ログインの方はこちら</a><br />
 <a href="users/register.php">会員登録がまだの方はこちら</a>
 </body>
 </html>

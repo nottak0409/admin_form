@@ -143,7 +143,7 @@ if(isset($_SESSION['id'])) {
 			</dd>
 		</dl>
 		<div>
-			<input type="submit" value="投稿する" />
+			<input type="submit" value="更新する" />
 		</div>
 	</form>
   </div>
