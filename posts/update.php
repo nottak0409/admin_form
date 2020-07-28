@@ -1,24 +1,48 @@
 <?php
 session_start();
+
+require('../function/function.php');
 require('../function/dbconnect.php');
 
 if(isset($_SESSION['id'])) {
-  $id = $_REQUEST['id'];
-
-  $messages = $db->prepare('SELECT * FROM posts WHERE id=?');
-  $messages->execute(array($id));
-  $message = $messages->fetch();
+  $posts = $db->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id AND posts.id=? ORDER BY posts.created DESC');
+  $posts->execute(array($_REQUEST['id']));
+  $post = $posts->fetch();
 
   if(!empty($_POST)){
-  if($message['user_id'] == $_SESSION['id']) {
-    //編集用の処理
-    //$del = $db->prepare('DELETE FROM posts WHERE id=?');
-    //$del->execute(array($id));
+    if($post['user_id'] == $_SESSION['id']) {
+       if(($_FILES['picture']['name']) != "") {
+         $image = date('YmdHis') . $_FILES['picture']['name'];
+         move_uploaded_file($_FILES['picture']['tmp_name'], '../picture/' . $image);
+          $picture = $db->prepare('UPDATE posts SET picture=? WHERE id=?');
+          $picture->execute(array(
+           $image,
+           $post['id']
+        ));
+     }
+    $methodOfPayment = h(implode(',', $_POST['method_of_payment']));
+    $message = $db->prepare('UPDATE posts SET name=?, title=?, small_title=?, content=?, business_hours=?, business_hours_text=?, address=?, tel=?, average_budget=?, method_of_payment=?, qualified=?, genre=?, other_genre=? WHERE id=?');
+		$message->execute(array(
+      $_POST['name'],
+      $_POST['title'],
+      $_POST['small_title'],
+      $_POST['content'],
+      $_POST['business_hours'],
+      $_POST['business_hours_text'],
+      $_POST['address'],
+      $_POST['tel'],
+      $_POST['average_budget'],
+      $methodOfPayment,
+      $_POST['qualified'],
+      $_POST['genre'],
+      $_POST['other_genre'],
+      $post['id']
+    ));
     }
+    header('Location: list.php'); exit();
   }
 }
 
-header('Location: list.php'); exit();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -26,36 +50,34 @@ header('Location: list.php'); exit();
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>投稿</title>
-
+	<title>編集</title>
   <link rel="stylesheet" href="../stylesheets/style.css" />
 </head>
-
 <body>
 <div id="wrap">
   <div id="head">
-    <h1>投稿</h1>
+    <h1>編集</h1>
   </div>
   <div id="content">
-		<dt>投稿者名:<?php echo h($user['name']); ?>さん</dt>
   <form action="" method="post" enctype="multipart/form-data">
 		<dl>
 			<dt>会社名、イベント名</dt>
 			<dd>
-				<input type="text" name="name" size="35" maxlength="255" value="<?php echo h($_POST['name']); ?>"/>
+				<input type="text" name="name" size="35" maxlength="255" value="<?php echo h($post['name']); ?>"/>
 				<?php if (isset($error['name'])): ?>
 				<p class="error"><?php echo $error['name']; ?></p>
 			  <?php endif; ?>
 			</dd>
 			<dt>タイトル</dt>
       <dd>
-			  <input type="text" name="title" size="50" maxlength="255" value="<?php echo h($_POST['title']); ?>"/>
+			  <input type="text" name="title" size="50" maxlength="255" value="<?php echo h($post['title']); ?>"/>
 				<?php if (isset($error['title'])): ?>
 				<p class="error"><?php echo $error['title']; ?></p>
 				<?php endif; ?>
 			</dd>
 			<dt>投稿写真</dt>
 			<dd>
+        <img src="../picture/<?php echo h($post['picture']); ?>" width="200" height="200" /><br />
 				<input type="file" name="picture" size="35" />
         <?php if(isset($error['picture'])): ?>
         <p class="error"><?php echo $error['picture']; ?></p>
@@ -66,37 +88,37 @@ header('Location: list.php'); exit();
 			</dd>
 			<dt>小タイトル</dt>
 			<dd>
-				<input type="text" name="small_title" size="50" maxlength="255" value="<?php echo h($_POST['small_title']); ?>"/>
+				<input type="text" name="small_title" size="50" maxlength="255" value="<?php echo h($post['small_title']); ?>"/>
 				<?php if (isset($error['small_title'])): ?>
 				<p class="error"><?php echo $error['small_title']; ?></p>
 				<?php endif; ?>
 			</dd>
 			<dt>内容</dt>
 			<dd>
-			  <textarea name="content" cols="50" rows="5"><?php echo h($_POST['content']); ?></textarea>
+			  <textarea name="content" cols="50" rows="5"><?php echo h($post['content']); ?></textarea>
 				<?php if (isset($error['content'])): ?>
 				<p class="error"><?php echo $error['content']; ?></p>
 				<?php endif; ?>
 			</dd>
 			<dt>営業時間</dt>
 			<dd>
-        <input type="text" name="business_hours" size="30" maxlength="255" value="<?php echo h($_POST['business_hours']); ?>"/>
+        <input type="text" name="business_hours" size="30" maxlength="255" value="<?php echo h($post['business_hours']); ?>"/>
 			</dd>
 			<dt>営業内容</dt>
 			<dd>
-				<textarea name="business_hours_text" cols="50" rows="5"><?php echo h($_POST['business_hours_text']); ?></textarea>
+				<textarea name="business_hours_text" cols="50" rows="5"><?php echo h($post['business_hours_text']); ?></textarea>
 			</dd>
 			<dt>住所</dt>
 			<dd>
-				<input type="text" name="address" size="50" maxlength="255" value="<?php echo h($_POST['address']); ?>"/>
+				<input type="text" name="address" size="50" maxlength="255" value="<?php echo h($post['address']); ?>"/>
 			</dd>
 			<dt>電話番号</dt>
 			<dd>
-				<input type="text" name="tel" size="30" maxlength="255" value="<?php echo h($_POST['tel']); ?>"/>
+				<input type="text" name="tel" size="30" maxlength="255" value="<?php echo h($post['tel']); ?>"/>
 			</dd>
 			<dt>平均予算</dt>
 			<dd>
-				<input type="text" name="average_budget" size="50" maxlength="255" value="<?php echo h($_POST['average_budget']); ?>"/>
+				<input type="text" name="average_budget" size="50" maxlength="255" value="<?php echo h($post['average_budget']); ?>"/>
 			</dd>
 			<dt>支払い方法</dt>
 			<dd>
@@ -109,15 +131,15 @@ header('Location: list.php'); exit();
 			</dd>
       <dt>その他の資格</dt>
 			<dd>
-				<input type="text" name="qualified" size="50" maxlength="255" value="<?php echo h($_POST['qualified']); ?>"/>
+				<input type="text" name="qualified" size="50" maxlength="255" value="<?php echo h($post['qualified']); ?>"/>
 			</dd>
 			<dt>施設ジャンル</dt>
 			<dd>
-				<input type="text" name="genre" size="50" maxlength="255" value="<?php echo h($_POST['genre']); ?>"/>
+				<input type="text" name="genre" size="50" maxlength="255" value="<?php echo h($post['genre']); ?>"/>
 			</dd>
 			<dt>その他ジャンル</dt>
 			<dd>
-				<textarea name="other_genre" cols="50" rows="5"><?php echo h($_POST['other_genre']); ?></textarea>
+				<textarea name="other_genre" cols="50" rows="5"><?php echo h($post['other_genre']); ?></textarea>
 			</dd>
 		</dl>
 		<div>

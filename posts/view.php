@@ -32,7 +32,7 @@ $posts->execute(array($_REQUEST['id']));
 	<?php	if ($post = $posts->fetch()):	?>
 	<div class="content">
 	<p><span class-"name"><?php echo h($post['name']); ?></span></p>
-	<img src="../picture/<?php echo h($post['picture']); ?>" width="200" height="200" alt="<?php echo h($post['name']); ?>" />
+	<img src="../picture/<?php echo h($post['picture']); ?>" width="200" height="200" />
 	<p><?php echo h($post['small_title']); ?></p>
 	<p><?php echo makeLink(h($post['content'])); ?></p>
 	<p>営業時間:<?php echo h($post['business_hours']); ?></p>
