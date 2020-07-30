@@ -55,8 +55,8 @@ if(!empty($_POST)) {
   </div>
   <div class="content">
   <p>メールアドレスとパスワードを記入してログインしてください。</p>
-	<p>入会手続きがまだの方はこちらからどうぞ。</p>
-	<p>&raquo;<a href="register.php">入会手続きをする</a></p>
+	<p>会員登録がまだの方はこちらからどうぞ。</p>
+	<p>&raquo;<a href="register.php">会員登録</a></p>
 	</div>
 	<form action="" method="post">
 		<div class="form-group row">
@@ -75,7 +75,6 @@ if(!empty($_POST)) {
 				</div>
 			</div>
 			<div class="form-group row">
-			<label for="remember" class="col-sm-4 col-form-label">ログイン情報の記録</label>
 			  <div class="col-md-8">
 			    <input type="checkbox" class="form-check-input" name="save" value="on" />
 			    <label class="form-check-label" for="save">次回からは自動的にログインする</label>
