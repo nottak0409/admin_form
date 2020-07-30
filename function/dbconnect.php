@@ -1,11 +1,11 @@
 <?php
-  //if($_SERVER['SERVER_NAME']=='localhost'){
-   //try {
-     //$db = new PDO('mysql:dbname=admin_db;host=localhost;charset=utf8', 'root', 'root');}
-     //catch(PDOException $e) {
-     //echo 'DB接続エラー: ' . $e->getMessage();
-     //}
-   //} else {
+  if($_SERVER['SERVER_NAME']=='localhost'){
+  try {
+     $db = new PDO('mysql:dbname=admin_db;host=localhost;charset=utf8', 'root', 'root');}
+     catch(PDOException $e) {
+     echo 'DB接続エラー: ' . $e->getMessage();
+     }
+   } else {
      function dbConnect(){
      $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
      $db['dbname'] = ltrim($db['path'], '/');
@@ -20,6 +20,7 @@
    $dbh = new PDO($dsn,$user,$password,$options);
    return $dbh;
   }
+}
 //}
 
 ?>
