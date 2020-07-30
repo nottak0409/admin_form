@@ -18,8 +18,10 @@
   color:red;
 }
 
-li{
-  list-style:none;
+.confirm{
+  border-style:solid;
+  border:1px;
+  border-color: #333333;
 }
 
 .picture{

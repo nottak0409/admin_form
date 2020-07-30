@@ -22,6 +22,7 @@ if(!empty($_POST)){
 		$error['picture'] = 'jpegかgifかpngの画像ファイルを選択してください。';
 	  }
   }
+	$methodOfPayment = implode(',', $_POST['method_of_payment']);
 
 	if(empty($fileName)){
 		$error['picture'] = '画像を登録してください。';
@@ -140,9 +141,9 @@ if ($_REQUEST['action'] == 'rewrite') {
 				<input type="text" name="average_budget" class="form-control" size="50" maxlength="255" value="<?php echo h($_POST['average_budget']); ?>"/>
 			</div>
 			<div>支払い方法</div>
-			  <input type="checkbox" class="form-check-input" name="method_of_payment[]" value="現金のみ" /> 現金のみ
-				<input type="checkbox" name="method_of_payment[]" value="クレジットカード可" />クレジット使用可能
-				<input type="checkbox" name="method_of_payment[]" value="電子マネー可" />電子マネー使用可能
+			  <input type="checkbox" class="form-check-input" name="method_of_payment[]" value="現金のみ" <?php if (preg_match("/現金のみ/", $methodOfPayment)): ?> checked="checked" <?php endif; ?>/> 現金のみ
+				<input type="checkbox" name="method_of_payment[]" value="クレジットカード可" <?php if (preg_match("/クレジットカード可/", $methodOfPayment)): ?> checked="checked" <?php endif; ?>/>クレジット使用可能
+				<input type="checkbox" name="method_of_payment[]" value="電子マネー可" <?php if (preg_match("/電子マネー可/", $methodOfPayment)): ?> checked="checked" <?php endif; ?>/>電子マネー使用可能
 				<?php if (isset($error['method_of_payment'])): ?>
 				<p class="error"><?php echo $error['method_of_payment']; ?></p>
 				<?php endif; ?>
@@ -159,7 +160,7 @@ if ($_REQUEST['action'] == 'rewrite') {
 				<textarea name="other_genre" class="form-control" cols="50" rows="5"><?php echo h($_POST['other_genre']); ?></textarea>
 			</div>
 		<div>
-			<button type="submit" class="btn btn-primary">投稿する</button>
+			<button type="submit" class="btn btn-primary">確認画面へ</button>
 		</div>
 	</form>
   </div>
