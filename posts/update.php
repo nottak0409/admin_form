@@ -9,15 +9,36 @@ if(isset($_SESSION['id'])) {
   $posts->execute(array($_REQUEST['id']));
   $post = $posts->fetch();
 
-  if(!empty($_POST)){
-    if($post['user_id'] == $_SESSION['id']) {
-       if(($_FILES['picture']['name']) != "") {
-         $image = date('YmdHis') . $_FILES['picture']['name'];
-         move_uploaded_file($_FILES['picture']['tmp_name'], '../picture/' . $image);
-          $picture = $db->prepare('UPDATE posts SET picture=? WHERE id=?');
-          $picture->execute(array(
-           $image,
-           $post['id']
+  if(!empty($_POST) && $post['user_id'] == $_SESSION['id']){
+
+    if(empty($_POST['name'])){
+  		$error['name'] = "会社名かイベント名を入力してください";
+  	}
+
+  	if(empty($_POST['title'])) {
+  		$error['title'] = "タイトルを入力してください。";
+  	}
+
+  	if(empty($_POST['small_title'])) {
+  		$error['small_title'] = "小タイトルを入力してください。";
+  	}
+
+  	if(empty($_POST['content'])) {
+  		$error['content'] = "内容を入力してください";
+  	}
+
+  	if(empty($_POST['method_of_payment'])){
+  		$error['method_of_payment'] = "どれか一つ選択してください";
+  	}
+
+    if(empty($error)){
+     if(($_FILES['picture']['name']) != "") {
+        $image = date('YmdHis') . $_FILES['picture']['name'];
+        move_uploaded_file($_FILES['picture']['tmp_name'], '../picture/' . $image);
+        $picture = $db->prepare('UPDATE posts SET picture=? WHERE id=?');
+        $picture->execute(array(
+        $image,
+        $post['id']
         ));
      }
     $methodOfPayment = h(implode(',', $_POST['method_of_payment']));
@@ -38,8 +59,8 @@ if(isset($_SESSION['id'])) {
       $_POST['other_genre'],
       $post['id']
     ));
-    }
     header('Location: list.php'); exit();
+    }
   }
 }
 

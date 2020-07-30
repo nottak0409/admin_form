@@ -2,6 +2,13 @@
   color: red;
 }
 
+body{
+  text-align:center;
+}
+
+li{
+  list-style:none;
+}
 .content {
   padding: 10px;
   margin-bottom: 10px;
