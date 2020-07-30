@@ -33,6 +33,10 @@ if(isset($_SESSION['id'])) {
 
     if(empty($error)){
      if(($_FILES['picture']['name']) != "") {
+        $ext = substr($_POST['picture'], -3);
+        if ($ext != 'jpg' && $ext != 'gif' && $ext != 'png') {
+        $error['picture'] = 'jpegかgifかpngの画像ファイルを選択してください。';
+        }
         $image = date('YmdHis') . $_FILES['picture']['name'];
         move_uploaded_file($_FILES['picture']['tmp_name'], '../picture/' . $image);
         $picture = $db->prepare('UPDATE posts SET picture=? WHERE id=?');
@@ -143,9 +147,9 @@ if(isset($_SESSION['id'])) {
 			</dd>
 			<dt>支払い方法</dt>
 			<dd>
-			  <input type="checkbox" name="method_of_payment[]" value="現金のみ" />現金のみ
-				<input type="checkbox" name="method_of_payment[]" value="クレジットカード可" />クレジット使用可能
-				<input type="checkbox" name="method_of_payment[]" value="電子マネー可" />電子マネー使用可能
+        <input type="checkbox" name="method_of_payment[]" value="現金のみ" <?php if (preg_match("/現金のみ/", $post['method_of_payment'])): ?> checked="checked" <?php endif; ?>/>現金のみ
+        <input type="checkbox" name="method_of_payment[]" value="クレジットカード可" <?php if (preg_match("/クレジットカード可/", $post['method_of_payment'])): ?> checked="checked" <?php endif; ?>/>クレジット使用可能
+				<input type="checkbox" name="method_of_payment[]" value="電子マネー可" <?php if (preg_match("/電子マネー可/", $post['method_of_payment'])): ?> checked="checked" <?php endif; ?>/>電子マネー使用可能
 				<?php if (isset($error['method_of_payment'])): ?>
 				<p class="error"><?php echo $error['method_of_payment']; ?></p>
 				<?php endif; ?>

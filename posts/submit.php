@@ -18,8 +18,8 @@ if(!empty($_POST)){
 	$fileName = $_FILES['picture']['name'];
   if(!empty($fileName)) {
 	  $ext = substr($fileName, -3);
-	  if ($ext != 'jpg' && $ext != 'gif') {
-		$error['picture'] = 'jpgかgifの画像ファイルを選択してください。';
+	  if ($ext != 'jpg' && $ext != 'gif' && $ext != 'png') {
+		$error['picture'] = 'jpegかgifかpngの画像ファイルを選択してください。';
 	  }
   }
 
