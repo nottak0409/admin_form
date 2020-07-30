@@ -12,6 +12,10 @@ if(isset($_SESSION['id'])) {
   if($message['user_id'] == $_SESSION['id']) {
     $del = $db->prepare('DELETE FROM posts WHERE id=?');
     $del->execute(array($id));
+    $fileName = "../picture/" . $message['picture'];
+    if(file_exists($fileName)){
+      unlink($fileName);
+    }
   }
 }
 
