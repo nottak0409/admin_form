@@ -47,12 +47,9 @@ $posts->execute();
 <body>
 	<script type="text/javascript" src="../Javascript/jquery-3.5.1.js"></script>
   <script type="text/javascript" src="../Javascript/bootstrap.bundle.js"></script>
-<div id="wrap">
+  <div class="body">
+	<h1>一覧</h1>
 	<a href="submit.php">投稿される方はこちら</a>
-  <div id="head">
-    <h1>一覧</h1>
-  </div>
-  <div id="content">
 	<?php foreach ($posts as $post): ?>
 		<div class="content">
 			<p><span class="name"><?php echo h($post['name']); ?></span>

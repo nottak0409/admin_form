@@ -45,47 +45,47 @@ if(!empty($_POST)) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>ログインフォーム</title>
-
-  <link rel="stylesheet" href="../stylesheets/style.css" />
-</head>
-
-<body>
-<div id="wrap">
+	<link rel="stylesheet" href="../stylesheets/style.css" />
+  <link rel="stylesheet" href="../stylesheets/bootstrap.css" />
+  </head>
+  <body>
+	<div class="body">
   <div id="head">
     <h1>ログインする</h1>
   </div>
-  <div id="content">
-  <div id="lead">
+  <div class="content">
   <p>メールアドレスとパスワードを記入してログインしてください。</p>
 	<p>入会手続きがまだの方はこちらからどうぞ。</p>
 	<p>&raquo;<a href="register.php">入会手続きをする</a></p>
 	</div>
 	<form action="" method="post">
-		<dl>
-			<dt>メールアドレス</dt>
-			<dd>
-			<input type="text" name="email" size="35" maxlength="255" value="<?php echo h($_POST['email']); ?>"/>
-			<?php if (isset($error['login'])): ?>
-			<p class="error"><?php echo $error['login']; ?></p>
+		<div class="form-group row">
+			<label for="email" class="col-sm-4 col-form-label">メールアドレス</label>
+      <div class="col-md-8">
+			  <input type="text" class="form-control" name="email" maxlength="255" value="<?php echo h($_POST['email']); ?>"/>
+			  <?php if (isset($error['login'])): ?>
+			  <p class="error"><?php echo $error['login']; ?></p>
    		<?php endif; ?>
-			</dd>
-			<dt>パスワード</dt>
-			<dd>
-			<input type="text" name="password" size="35" maxlength="255" value="<?php echo h($_POST['password']); ?>"/>
-			<?php if (isset($error['login'])): ?>
-			<p class="error"><?php echo $error['login']; ?></p>
-			<?php endif; ?>
-			</dd>
-			<dt>ログイン情報の記録</dt>
-			<dd>
-			<input id="save" type="checkbox" name="save" value="on" /><lavel for="save">
-			次回からは自動的にログインする</lavel>
-			</dd>
-		</dl>
-		<div><input type="submit" value="ログインする"  /></div>
+			</div>
+		</div>
+		  <div class="form-group row">
+				<label for="password" class="col-sm-4 col-form-label">パスワード</label>
+			  <div class="col-md-8">
+			    <input type="text" name="password" class="form-control" maxlength="255" value="<?php echo h($_POST['password']); ?>"/>
+			    <?php if (isset($error['login'])): ?>
+			    <p class="error"><?php echo $error['login']; ?></p>
+			    <?php endif; ?>
+				</div>
+			</div>
+			<div class="form-group row">
+			<label for="remember" class="col-sm-4 col-form-label">ログイン情報の記録</label>
+			  <div class="col-md-8">
+			    <input type="checkbox" class="form-check-input" name="save" value="on" />
+			    <label class="form-check-label" for="save">次回からは自動的にログインする</label>
+		    </div>
+		  </div>
+		<button type="submit" class="btn btn-primary">ログインする</button>
 	</form>
   </div>
-
-</div>
-</body>
-</html>
+  </body>
+  </html>

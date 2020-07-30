@@ -53,11 +53,8 @@ if($_SESSION['ticket'] != '') {
 </head>
 
 <body>
-<div id="wrap">
-  <div id="head">
-    <h1>投稿確認画面</h1>
-  </div>
-  <div id="content">
+  <div class="body">
+  <h1>投稿確認画面</h1>
 　<form action="" method="post">
     <input type="hidden" name="action" value="submit" />
 	  <dl>
@@ -122,7 +119,5 @@ if($_SESSION['ticket'] != '') {
 		type="submit" value="登録する"></div>
   </form>
   </div>
-
-</div>
 </body>
 </html>

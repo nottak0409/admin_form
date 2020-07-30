@@ -18,16 +18,13 @@ $posts->execute(array($_REQUEST['id']));
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>詳細</title>
-
+	<link rel="stylesheet" href="../stylesheets/bootstrap.css" />
   <link rel="stylesheet" href="../stylesheets/style.css" />
 </head>
 
 <body>
-<div id="wrap">
-  <div id="head">
-    <h1>詳細</h1>
-  </div>
-  <div id="content">
+  <div class="body">
+	<h1>詳細</h1>
   <p>&laquo;<a href="list.php">一覧に戻る</a></p>
 	<?php	if ($post = $posts->fetch()):	?>
 	<div class="content">
@@ -50,7 +47,5 @@ $posts->execute(array($_REQUEST['id']));
 		<p>その投稿は削除されたか、URLが間違えています。</p>
 	<?php endif; ?>
   </div>
-
-</div>
 </body>
 </html>

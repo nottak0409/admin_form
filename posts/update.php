@@ -77,13 +77,11 @@ if(isset($_SESSION['id'])) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>編集</title>
   <link rel="stylesheet" href="../stylesheets/style.css" />
+  <link rel="stylesheet" href="../stylesheets/bootstrap.css" />
 </head>
 <body>
-<div id="wrap">
-  <div id="head">
-    <h1>編集</h1>
-  </div>
-  <div id="content">
+  <div class="body">
+  <h1>編集</h1>
   <form action="" method="post" enctype="multipart/form-data">
 		<dl>
 			<dt>会社名、イベント名</dt>
@@ -172,6 +170,5 @@ if(isset($_SESSION['id'])) {
 		</div>
 	</form>
   </div>
-</div>
 </body>
 </html>

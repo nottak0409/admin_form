@@ -2,15 +2,28 @@
   color: red;
 }
 
-body{
-  text-align:center;
+.body{
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.body-submit{
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.error{
+  color:red;
 }
 
 li{
   list-style:none;
   display: inline-block;
-  text-align: center;
+
 }
+
 .content {
   padding: 10px;
   margin-bottom: 10px;

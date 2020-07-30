@@ -31,14 +31,12 @@ if(!empty($_POST)) {
 	<title>会員登録</title>
 　
 	<link rel="stylesheet" href="../stylesheets/style.css" />
+	<link rel="stylesheet" href="../stylesheets/bootstrap.css" />
 </head>
 
 <body>
-<div id="wrap">
-  <div id="head">
-    <h1>会員登録</h1>
-  </div>
-  <div id="content">
+  <div class="body">
+	<h1>会員登録</h1>
 　<form action="" method="post">
     <input type="hidden" name="action" value="submit" />
 	  <dl>
@@ -59,7 +57,5 @@ if(!empty($_POST)) {
 		type="submit" value="登録する"></div>
   </form>
   </div>
-
-</div>
 </body>
 </html>
