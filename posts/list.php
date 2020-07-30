@@ -41,9 +41,12 @@ $posts->execute();
 	<title>一覧画面</title>
 
   <link rel="stylesheet" href="../stylesheets/style.css" />
+	<link rel="stylesheet" href="../stylesheets/bootstrap.css" />
 </head>
 
 <body>
+	<script type="text/javascript" src="../Javascript/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="../Javascript/bootstrap.bundle.js"></script>
 <div id="wrap">
 	<a href="submit.php">投稿される方はこちら</a>
   <div id="head">

@@ -9,7 +9,7 @@ body{
 li{
   list-style:none;
   display: inline-block;
-  background-color:black;
+  text-align: center;
 }
 .content {
   padding: 10px;
