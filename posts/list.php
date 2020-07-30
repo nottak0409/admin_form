@@ -55,7 +55,8 @@ $posts->execute();
 			<p><span class="name"><?php echo h($post['name']); ?></span>
 			<p><?php echo h($post['title']); ?></p>
 			<img src="../picture/<?php echo h($post['picture']); ?>" width="200" height="200" alt="<?php echo h($post['name']); ?>" />
-			<p class="day"><a href="view.php?id=<?php echo h($post['id']); ?>"><?php echo h($post['created']); ?></a>
+			<p class="view"><a href="view.php?id=<?php echo h($post['id']); ?>">詳しく見る</a></p>
+			<p class="day"><?php echo h($post['created']); ?></a>
 			<?php if($_SESSION['id'] == $post['user_id']): ?>
 			[<a href="update.php?id=<?php echo h($post['id']); ?>" style="color:#0FF;">編集</a>]
       [<a href="delete.php?id=<?php echo h($post['id']); ?>" style="color:#F33;">削除</a>]
@@ -63,18 +64,19 @@ $posts->execute();
 			</p>
 		</div>
 	<?php endforeach; ?>
-	<ul class="paging">
+	<div>
 		<?php if($page > 1): ?>
-			<li><a href="list.php?page=<?php print($page - 1); ?>">前のページへ</a></li>
+			<a href="list.php?page=<?php print($page - 1); ?>">前のページへ</a>
 		<?php else: ?>
-			<li>前のページへ</li>
+			前のページへ
 		<?php endif; ?>
+		|
 		<?php if($page < $maxPage): ?>
-			<li><a href="list.php?page=<?php print($page + 1); ?>">次のページへ</a></li>
+			<a href="list.php?page=<?php print($page + 1); ?>">次のページへ</a>
 		<?php else: ?>
-			<li>次のページへ</li>
+			次のページへ
 		<?php endif; ?>
-	</ul>
+	</div>
 	<div class="logout" style="text-align: center; padding-top: 10px;"><a href="../users/logout.php">ログアウト</a></div>
 	</div>
   </div>

@@ -20,8 +20,12 @@
 
 li{
   list-style:none;
-  display: inline-block;
+}
 
+.picture{
+  border-style:solid;
+  border:1px;
+  border-color: #333333;
 }
 
 .content {

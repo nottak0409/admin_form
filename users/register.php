@@ -51,27 +51,34 @@ if(!empty($_POST)){
 	<h1>会員登録</h1>
   <p>次のフォームに必要事項をご記入ください</p>
 	<form action="" method="post" enctype="multipart/form-data">
-		<dl>
-			<dt>ニックネーム<span class="required">必須</span></dt>
-			<dd><input type="text" name="name" size="35" maxlength="255" value="<?php echo h($_POST['name']); ?>" />
-			<?php if (isset($error['name'])): ?>
-			<p class="error"><?php echo $error['name']; ?></p>
-		  <?php endif; ?>
-		  </dd>
-			<dt>メールアドレス<span class="required">必須</span></dt>
-			<dd><input type="text" name="email" size="35" maxlength="255" value="<?php echo h($_POST['email']); ?>"/>
-			<?php if (isset($error['email'])): ?>
-			<p class="error"><?php echo $error['email']; ?></p>
-			<?php endif; ?>
-			</dd>
-			<dt>パスワード<span class="required">必須</span></dt>
-			<dd><input type="password" name="password" size="10" maxlength="20" value="<?php echo h($_POST['password']); ?>"/>
-			<?php if (isset($error['password'])): ?>
-			<p class="error"><?php echo $error['password']; ?></p>
-			<?php endif; ?>
-			</dd>
-		</dl>
-		<div><input type="submit" value="入力内容を確認する" /></div>
+		<div class="form-group row">
+			<label for="name">ニックネーム　　<span class="required">必須</span></label>
+			<div class="col-md-8">
+			  <input type="text" name="name" class="form-control" size="35" maxlength="255" value="<?php echo h($_POST['name']); ?>" />
+			  <?php if (isset($error['name'])): ?>
+			  <p class="error"><?php echo $error['name']; ?></p>
+		    <?php endif; ?>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="email">メールアドレス　<span class="required">必須</span></label>
+			<div class="col-md-8">
+			  <input type="text" name="email" class="form-control" size="35" maxlength="255" value="<?php echo h($_POST['email']); ?>"/>
+			  <?php if (isset($error['email'])): ?>
+			  <p class="error"><?php echo $error['email']; ?></p>
+			  <?php endif; ?>
+		  </div>
+		</div>
+		<div class="form-group row">
+			<label for="password">パスワード　　　<span class="required">必須</span></label>
+      <div class="col-md-8">
+  			<input type="password" name="password" class="form-control" size="10" maxlength="20" value="<?php echo h($_POST['password']); ?>"/>
+	   		<?php if (isset($error['password'])): ?>
+			  <p class="error"><?php echo $error['password']; ?></p>
+			  <?php endif; ?>
+		  </div>
+		</div>
+		<button type="submit" class="btn btn-primary">登録する</button>
 	</form>
   </div>
 </body>
