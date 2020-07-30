@@ -63,9 +63,6 @@ if(!empty($_POST)) {
 			<label for="email" class="col-sm-4 col-form-label">メールアドレス</label>
       <div class="col-md-8">
 			  <input type="text" class="form-control" name="email" maxlength="255" value="<?php echo h($_POST['email']); ?>"/>
-			  <?php if (isset($error['login'])): ?>
-			  <p class="error"><?php echo $error['login']; ?></p>
-   		<?php endif; ?>
 			</div>
 		</div>
 		  <div class="form-group row">

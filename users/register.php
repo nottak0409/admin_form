@@ -10,6 +10,11 @@ if(!empty($_POST)){
 	if($_POST['email'] == "") {
 		$error['email'] = "入力してください";
 	}
+
+  if(preg_match("/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/", $_POST['email']) == 0) {
+    $error['email'] = 'メールアドレスの形式が正しくありません。';
+  }
+
 	if(strlen($_POST['password']) < 4) {
 		$error['password'] = "4文字以上で入力してください";
 	}
