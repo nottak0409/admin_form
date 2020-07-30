@@ -6,7 +6,6 @@
      //echo 'DB接続エラー: ' . $e->getMessage();
      //}
    //} else {
-   try{
      function dbConnect(){
      $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
      $db['dbname'] = ltrim($db['path'], '/');
@@ -21,9 +20,6 @@
    $dbh = new PDO($dsn,$user,$password,$options);
    return $dbh;
   }
- } catch(PDOException $e) {
- echo 'DB接続エラー: ' . $e->getMessage();
- }
 //}
 
 ?>
