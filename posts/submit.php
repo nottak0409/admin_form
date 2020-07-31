@@ -18,11 +18,10 @@ if(!empty($_POST)){
 	$fileName = $_FILES['picture']['name'];
   if(!empty($fileName)) {
 	  $ext = substr($fileName, -3);
-	  if ($ext != 'jpg' && $ext != 'gif' && $ext != 'png') {
+	  if ($ext != 'jpg' && $ext != 'JPG' && $ext != 'gif' && $ext != 'GIF' && $ext != 'png' && $ext != 'PNG') {
 		$error['picture'] = 'jpegかgifかpngの画像ファイルを選択してください。';
 	  }
   }
-	$methodOfPayment = implode(',', $_POST['method_of_payment']);
 
 	if(empty($fileName)){
 		$error['picture'] = '画像を登録してください。';
@@ -47,6 +46,10 @@ if(!empty($_POST)){
 	if(empty($_POST['method_of_payment'])){
 		$error['method_of_payment'] = "どれか一つ選択してください";
 	}
+
+	if(!empty($_POST['method_of_payment'])){
+	$methodOfPayment = h(implode(',', $_POST['method_of_payment']));
+  }
 
 //投稿内容のエラーチェック
 if (empty($error)) {
