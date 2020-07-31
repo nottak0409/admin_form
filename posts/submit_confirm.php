@@ -7,7 +7,7 @@ require('../function/function.php');
 if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$_SESSION['time'] = time();
 
-	$users = $db->prepare('SELECT * FROM users WHERE id=?');
+	$users = dbConnect()->prepare('SELECT * FROM users WHERE id=?');
 	$users->execute(array($_SESSION['id']));
 	$user = $users->fetch();
 } else {
@@ -18,7 +18,7 @@ if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 if($_SESSION['ticket'] != '') {
     $methodOfPayment = implode(',', $_SESSION['ticket']['method_of_payment']);
   if(!empty($_POST)) {
-		$message = $db->prepare('INSERT INTO posts SET user_id=?, name=?, title=?, picture=?, small_title=?, content=?, business_hours=?, business_hours_text=?, address=?, tel=?, average_budget=?, method_of_payment=?, qualified=?, genre=?, other_genre=?, created=NOW()');
+		$message = dbConnect()->prepare('INSERT INTO posts SET user_id=?, name=?, title=?, picture=?, small_title=?, content=?, business_hours=?, business_hours_text=?, address=?, tel=?, average_budget=?, method_of_payment=?, qualified=?, genre=?, other_genre=?, created=NOW()');
 		$message->execute(array(
 			$user['id'],
 			$_SESSION['ticket']['name'],

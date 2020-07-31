@@ -7,7 +7,7 @@ require('../function/function.php');
 if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$_SESSION['time'] = time();
 
-	$users = $db->prepare('SELECT * FROM users WHERE id=?');
+	$users = dbConnect()->prepare('SELECT * FROM users WHERE id=?');
 	$users->execute(array($_SESSION['id']));
 	$user = $users->fetch();
 } else {
@@ -22,13 +22,13 @@ if ($page == '') {
 
 $page = max($page, 1);
 
-$counts = $db->query('SELECT COUNT(*) AS cnt FROM posts');
+$counts = dbConnect()->query('SELECT COUNT(*) AS cnt FROM posts');
 $cnt = $counts->fetch();
 $maxPage = ceil($cnt['cnt'] / 5);
 $page = min($page, $maxPage);
 $start = ($page - 1) * 5;
 
-$posts = $db->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id ORDER BY posts.created DESC LIMIT ?, 5');
+$posts = dbConnect()->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id ORDER BY posts.created DESC LIMIT ?, 5');
 $posts->bindParam(1, $start, PDO::PARAM_INT);
 $posts->execute();
 ?>

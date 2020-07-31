@@ -12,7 +12,7 @@ if ($_COOKIE['email' != '']){
 
 if(!empty($_POST)) {
 	if($_POST['email'] != '' && $_POST['password'] != '') {
-		$login = $db->prepare('SELECT * FROM users WHERE email=? AND password=?');
+		$login = dbConnect()->prepare('SELECT * FROM users WHERE email=? AND password=?');
 		$login->execute(array(
 			$_POST['email'],
 			sha1($_POST['password'])

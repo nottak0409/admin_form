@@ -7,7 +7,7 @@ require('../function/function.php');
 if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$_SESSION['time'] = time();
 
-	$users = $db->prepare('SELECT * FROM users WHERE id=?');
+	$users = dbConnect()->prepare('SELECT * FROM users WHERE id=?');
 	$users->execute(array($_SESSION['id']));
 	$user = $users->fetch();
 } else {

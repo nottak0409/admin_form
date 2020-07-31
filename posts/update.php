@@ -5,7 +5,7 @@ require('../function/function.php');
 require('../function/dbconnect.php');
 
 if(isset($_SESSION['id'])) {
-  $posts = $db->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id AND posts.id=? ORDER BY posts.created DESC');
+  $posts = dbConnect()->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id AND posts.id=? ORDER BY posts.created DESC');
   $posts->execute(array($_REQUEST['id']));
   $post = $posts->fetch();
 
@@ -45,14 +45,14 @@ if(isset($_SESSION['id'])) {
        }
         $image = date('YmdHis') . $_FILES['picture']['name'];
         move_uploaded_file($_FILES['picture']['tmp_name'], '../picture/' . $image);
-        $picture = $db->prepare('UPDATE posts SET picture=? WHERE id=?');
+        $picture = dbConnect()->prepare('UPDATE posts SET picture=? WHERE id=?');
         $picture->execute(array(
         $image,
         $post['id']
         ));
      }
     $methodOfPayment = h(implode(',', $_POST['method_of_payment']));
-    $message = $db->prepare('UPDATE posts SET name=?, title=?, small_title=?, content=?, business_hours=?, business_hours_text=?, address=?, tel=?, average_budget=?, method_of_payment=?, qualified=?, genre=?, other_genre=? WHERE id=?');
+    $message = dbConnect()->prepare('UPDATE posts SET name=?, title=?, small_title=?, content=?, business_hours=?, business_hours_text=?, address=?, tel=?, average_budget=?, method_of_payment=?, qualified=?, genre=?, other_genre=? WHERE id=?');
 		$message->execute(array(
       $_POST['name'],
       $_POST['title'],

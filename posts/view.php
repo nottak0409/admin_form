@@ -8,7 +8,7 @@ if (empty($_REQUEST['id'])) {
 	header('Location: list.php'); exit();
 }
 
-$posts = $db->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id AND posts.id=? ORDER BY posts.created DESC');
+$posts = dbConnect()->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id AND posts.id=? ORDER BY posts.created DESC');
 $posts->execute(array($_REQUEST['id']));
 ?>
 <!DOCTYPE html>

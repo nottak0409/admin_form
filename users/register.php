@@ -23,7 +23,7 @@ if(!empty($_POST)){
 	}
 
   if (empty($error)) {
-		$user = $db->prepare('SELECT COUNT(*) AS cnt FROM users WHERE email=?');
+		$user = dbConnect()->prepare('SELECT COUNT(*) AS cnt FROM users WHERE email=?');
 		$user->execute(array($_POST['email']));
 		$record = $user->fetch();
 		if ($record['cnt'] > 0) {
