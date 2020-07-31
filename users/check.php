@@ -48,7 +48,7 @@ if(!empty($_POST)) {
 			  <?php echo h($_SESSION['join']['email']); ?>
 			</div>
 			<div>パスワード:【表示されません】</div>
-		<div><a href="index.php?action=rewrite">&laquo;&nbsp;書き直す</a> | <button type="submit" class="btn btn-primary">登録する</button></div>
+		<div><a href="register.php?action=rewrite">&laquo;&nbsp;書き直す</a> | <button type="submit" class="btn btn-primary">登録する</button></div>
   </form>
   </div>
 </body>

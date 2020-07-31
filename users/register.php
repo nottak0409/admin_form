@@ -35,10 +35,12 @@ if(!empty($_POST)){
 		header('Location: check.php');
 		exit();
 	}
-	if ($_REQUEST['action'] == 'rewrite') {
-		$_POST = $_SESSION['join'];
-	}
 }
+
+if ($_REQUEST['action'] == 'rewrite') {
+	$_POST = $_SESSION['join'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
