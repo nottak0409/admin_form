@@ -86,21 +86,21 @@ if ($_REQUEST['action'] == 'rewrite') {
 		<dt>投稿者名:<?php echo h($user['name']); ?>さん</dt>
   <form action="" method="post" enctype="multipart/form-data">
 			<div class="form-group">
-			<label for="name">会社名、イベント名</label>
+			<label for="name">会社名、イベント名<span class="required">(必須)</span></label>
 				<input type="text" name="name" class="form-control" size="35" maxlength="255" value="<?php echo h($_POST['name']); ?>"/>
 				<?php if (isset($error['name'])): ?>
 				<p class="error"><?php echo $error['name']; ?></p>
 			  <?php endif; ?>
 			</div>
 			<div class="form-group">
-			<label>タイトル</label>
+			<label>タイトル<span class="required">(必須)</span></label>
 			  <input type="text" name="title" class="form-control" size="50" maxlength="255" value="<?php echo h($_POST['title']); ?>"/>
 				<?php if (isset($error['title'])): ?>
 				<p class="error"><?php echo $error['title']; ?></p>
 				<?php endif; ?>
 			</div>
 			<div class="form-group">
-			<label>投稿写真</label>
+			<label>投稿写真<span class="required">(必須)</span></label>
 				<input type="file" name="picture" class="form-control-file picture" size="35" />
         <?php if(isset($error['picture'])): ?>
         <p class="error"><?php echo $error['picture']; ?></p>
@@ -110,14 +110,14 @@ if ($_REQUEST['action'] == 'rewrite') {
         <?php endif; ?>
 			</div>
 			<div class="form-group">
-			<label>小タイトル</label>
+			<label>小タイトル<span class="required">(必須)</span></label>
 				<input type="text" name="small_title" class="form-control" size="50" maxlength="255" value="<?php echo h($_POST['small_title']); ?>"/>
 				<?php if (isset($error['small_title'])): ?>
 				<p class="error"><?php echo $error['small_title']; ?></p>
 				<?php endif; ?>
 			</div>
 			<div class="form-group">
-			<label>内容</label>
+			<label>内容<span class="required">(必須)</span></label>
 			  <textarea name="content" class="form-control" cols="50" rows="5"><?php echo h($_POST['content']); ?></textarea>
 				<?php if (isset($error['content'])): ?>
 				<p class="error"><?php echo $error['content']; ?></p>
@@ -143,7 +143,7 @@ if ($_REQUEST['action'] == 'rewrite') {
 			<label>平均予算</label>
 				<input type="text" name="average_budget" class="form-control" size="50" maxlength="255" value="<?php echo h($_POST['average_budget']); ?>"/>
 			</div>
-			<div>支払い方法</div>
+			<div>支払い方法<span class="required">(必須)</span></div>
 			  <input type="checkbox" class="form-check-input" name="method_of_payment[]" value="現金のみ" <?php if (preg_match("/現金のみ/", $methodOfPayment)): ?> checked="checked" <?php endif; ?>/> 現金のみ
 				<input type="checkbox" name="method_of_payment[]" value="クレジットカード可" <?php if (preg_match("/クレジットカード可/", $methodOfPayment)): ?> checked="checked" <?php endif; ?>/>クレジット使用可能
 				<input type="checkbox" name="method_of_payment[]" value="電子マネー可" <?php if (preg_match("/電子マネー可/", $methodOfPayment)): ?> checked="checked" <?php endif; ?>/>電子マネー使用可能

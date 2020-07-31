@@ -15,25 +15,27 @@ if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 }
 
 
-//$page = $_REQUEST['page'];
-//if ($page == '') {
-//	$page = 1;
-//}
+$page = $_REQUEST['page'];
+if ($page == '') {
+	$page = 1;
+}
 
-//$page = max($page, 1);
+$page = max($page, 1);
 
-//$counts = dbConnect()->query('SELECT COUNT(*) AS cnt FROM posts');
-//$cnt = $counts->fetch();
-//$maxPage = ceil($cnt['cnt'] / 5);
-//$page = min($page, $maxPage);
-//$start = ($page - 1) * 5;
+$counts = dbConnect()->query('SELECT COUNT(*) AS cnt FROM posts');
+$cnt = $counts->fetch();
+$maxPage = ceil($cnt['cnt'] / 5);
+if($maxPage = "float(0)") {
+	$page = 1;
+} else {
+$page = min($page, $maxPage);
+}
+$start = ($page - 1) * 5;
 
-//$posts = dbConnect()->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id ORDER BY posts.created DESC LIMIT ?, 5');
-//$posts->bindParam(1, $start, PDO::PARAM_INT);
-//$posts->execute();
-
-$posts = dbConnect()->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id ORDER BY posts.created DESC');
+$posts = dbConnect()->prepare('SELECT users.name, posts.* FROM users, posts WHERE users.id=posts.user_id ORDER BY posts.created DESC LIMIT ?, 5');
+$posts->bindParam(1, $start, PDO::PARAM_INT);
 $posts->execute();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -65,19 +67,19 @@ $posts->execute();
 			</p>
 		</div>
 	<?php endforeach; ?>
-	<!-- <div>
-		<?php // if($page > 1): ?>
+	<div>
+		<?php if($page > 1): ?>
 			<a href="list.php?page=<?php print($page - 1); ?>">前のページへ</a>
-		<?php //else: ?>
+		<?php else: ?>
 			前のページへ
-		<?php //endif; ?>
+		<?php endif; ?>
 		|
-		<?php //if($page < $maxPage): ?>
+		<?php if($page < $maxPage): ?>
 			<a href="list.php?page=<?php print($page + 1); ?>">次のページへ</a>
-		<?php //else: ?>
+		<?php else: ?>
 			次のページへ
-		<?php //endif; ?>
-	</div> -->
+		<?php endif; ?>
+	</div>
 	<div class="logout" style="text-align: center; padding-top: 10px;"><a href="../users/logout.php">ログアウト</a></div>
 	</div>
   </div>
