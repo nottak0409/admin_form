@@ -24,8 +24,10 @@ $page = max($page, 1);
 
 $counts = dbConnect()->query('SELECT COUNT(*) AS cnt FROM posts');
 $cnt = $counts->fetch();
+//var_dump(ceil($cnt["cnt"] / 5));exit();
 $maxPage = ceil($cnt['cnt'] / 5);
-if($maxPage = "float(0)") {
+
+if($maxPage == "float(0)") {
 	$page = 1;
 } else {
 $page = min($page, $maxPage);
