@@ -1,8 +1,10 @@
 <?php
   if($_SERVER['SERVER_NAME']=='localhost'){
   try {
-     $db = new PDO('mysql:dbname=admin_db;host=localhost;charset=utf8', 'root', 'root');}
-     catch(PDOException $e) {
+     function dbConnect() {
+     $db = new PDO('mysql:dbname=admin_db;host=localhost;charset=utf8', 'root', 'root');
+     return $db;
+     }} catch(PDOException $e) {
      echo 'DB接続エラー: ' . $e->getMessage();
      }
    } else {
