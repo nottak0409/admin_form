@@ -20,9 +20,11 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // サーバー証明書の検�
 // URLの情報を取得
 $response = curl_exec($ch);
 // 取得結果を表示
-var_dump($response);
+//var_dump($response);
 
 $result = json_decode($response, true);
 // セッションを終了
+//var_dump($result);
+
 curl_close($conn);
 ?>
